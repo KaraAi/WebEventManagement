@@ -12,6 +12,7 @@ namespace api.Repositories.Implementations.Mutations
 {
   public class MutationUsersAsync(ApiContext context) : IMutationHandler<UserDetail, ModifyUser>
   {
+    #region snippet_CreateAsync
     public async Task<GeneralResponse> CreateAsync(ModifyUser model)
     {
       try
@@ -36,10 +37,7 @@ namespace api.Repositories.Implementations.Mutations
         if (existingPhone != null)
           throw new RequestGeneralException($"Phone {model.Phone} already exists");
 
-        var existingEvent = await context.Events.Where(e => e.EventID == model.EventID).FirstOrDefaultAsync();
-
-        if (existingEvent == null)
-          throw new RequestGeneralException($"Event {model.EventID} not found");
+        var existingEvent = await context.Events.Where(e => e.EventID == model.EventID).FirstOrDefaultAsync() ?? throw new RequestGeneralException($"Event {model.EventID} not found");
 
         var user = new User
         {
@@ -75,7 +73,9 @@ namespace api.Repositories.Implementations.Mutations
         return ExceptionHandler<User>.MutationExceptionHandler(ex, 500);
       }
     }
+    #endregion
 
+    #region snippet_DeleteAsync
     public async Task<GeneralResponse> DeleteAsync(int id)
     {
       try
@@ -90,7 +90,7 @@ namespace api.Repositories.Implementations.Mutations
         {
           Message = $"User {user.FullName} has been deleted successfully",
           Success = true,
-          StatusCode = 200
+          StatusCode = 201
         };
       }
       catch (Exception ex)
@@ -98,6 +98,7 @@ namespace api.Repositories.Implementations.Mutations
         return ExceptionHandler<User>.MutationExceptionHandler(ex, 500);
       }
     }
+    #endregion
 
     public async Task<GeneralResponse> UpdateAsync(int UserID, ModifyUser model)
     {

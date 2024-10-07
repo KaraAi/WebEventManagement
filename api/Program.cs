@@ -11,6 +11,7 @@ Console.OutputEncoding = Encoding.UTF8;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IUserRepo, UserHandler>();
+builder.Services.AddScoped<IEventRepo, api.Handlers.EventHandler>();
 
 builder.Services.AddSingleton(provider =>
 {
@@ -50,7 +51,10 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 using var scope = app.Services.CreateScope();
+// User routes
 app.MapUserRoutes(scope.ServiceProvider.GetRequiredService<IUserRepo>());
+// Event routes
+app.MapEventRoutes(scope.ServiceProvider.GetRequiredService<IEventRepo>());
 
 SeedData.SeedDatabase(app);
 
