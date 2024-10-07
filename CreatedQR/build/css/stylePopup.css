@@ -1,0 +1,67 @@
+﻿#fade{/*--Transparent background layer--*/display: none; /*--hidden by default--*/background: #000;position: fixed;left: 0;top: 0;width: 100%;height: 100%;opacity: .80;z-index: 9999;}      
+  
+.popup_block{display: none; /*--hidden by default--*/background: #fff;border: 1px solid black;float: left;font-size: 1.2em;position: fixed;
+             top: 53%;left: 50%;
+    z-index: 99999; /*--CSS3 Box Shadows--*/-webkit-box-shadow: 28px 28px 28px #000;-moz-box-shadow: 28px 28px 28px #000;box-shadow: 28px 28px 28px #000; /*--CSS3 Rounded Corners--*/
+    width:234px;}    
+/*  top: 55%;left: 50%;  dùng để chỉnh nơi hiển thị của popup*/    
+    
+ 
+img.btn_close{float: right;margin:5px 5px 0px 0px;}
+/*--Making IE6 Understand Fixed Positioning--*/
+*html #fade{position: absolute;}
+*html .popup_block{position: absolute;}
+
+.popup_block a.close{top:2px;right:2px;}
+
+.contentpopup{float:left;width:96%;height:305px;;overflow:hidden;padding:2%;}
+
+.popup-header{float:left;width:30%;height:0 auto;overflow:hidden;}
+    .popup-header h3{float:left;width:100%;font: 19px "JosefinSans-Bold";color:#1b2c58;text-transform:uppercase;text-align:left;}
+    .popup-header span.typeproject{float:left;width:100%;font: 15px "JosefinSans-Regular";color:#1b2c58;margin-top:2%;text-align:left;}
+    .popup-header span.typeproject b{font: 15px "JosefinSans-Bold"; text-transform:uppercase;}
+    
+.popup-slide{float:left;width:68%;height:0 auto;overflow:hidden;margin-left:2%;}
+    .popup-slide .cate-item{float:left;width:100%;height:0 auto;overflow:hidden;margin:1% 0px 20% 0px;}       
+        .popup-slide  .cate-item img{float:left;width:95%;margin-left:0%;} 
+
+.popup-slide .slick-prev{bottom:-1%;right:40.5%;}
+.popup-slide .slick-next{bottom:-1%;right:33.5%;}
+
+
+.header-popup{float:left;color:#363636;font:bold 13px Lato-Regular;text-transform:uppercase;padding:2%;}
+.contentpopup{float:left;width:96%;height:320px;overflow:hidden;}
+
+    .send-cv-form{float:left;width:100%;height:0 auto;overflow:hidden;margin:1% 0px 3px 0px;}        
+    .send-cv-form ul{float:left;width:100%;list-style: none;margin:0;padding:0;}
+    .send-cv-form ul li{float:left;width:100%;margin:0;padding:0;}
+    .send-cv-form ul li .errorMes{float:left;margin:20px 0px 0px 5px;color:Red;}
+        .send-cv-form input{float:left;width:92%;border:solid 1px #ccc;color:#020202;font:12px Lato-Regular;margin:2% 0px 0px 2%;padding:5px;height:22px;}
+        .send-cv-form textarea{float:left;width:92%;margin:2% 0px 0px 5%;border:solid 1px #ccc;color:#020202;font:12px Lato-Regular;padding:5px;height:80px;}   
+        .send-cv-form .contact-button-send{float:right;width:auto;background-color:#f05a23;border-radius:8px;color:White;font:13px Lato-Bold;
+                                 text-transform:uppercase;padding:1% 3% 1% 3%;margin:3% 1% 3% 5%;text-align:center;}
+        .send-cv-form .contact-button-send:hover{color:#020202;}
+        
+
+   
+@media (min-width: 768px) and (max-width: 1023px) 
+{
+  .popup_block{width:900px !important;margin-left:--455px !important;}
+  .popup-header{float:left;width:100%;height:0 auto;overflow:hidden;}
+  .popup-slide{float:left;width:100%;height:0 auto;overflow:hidden;margin:5% 0px 0px 0px;}
+  
+  .popup-slide .slick-prev{bottom:-1%;right:42.5%;}
+  .popup-slide .slick-next{bottom:-1%;right:35.5%;}
+}
+@media (min-width: 480px) and (max-width: 767px) 
+{
+  .popup_block{width:500px !important;margin-left:--455px !important;}
+  .popup-header{float:left;width:100%;height:0 auto;overflow:hidden;}
+  .popup-slide{float:left;width:100%;height:0 auto;overflow:hidden;margin:5% 0px 0px 0px;}
+}
+@media (max-width: 479px) 
+{
+  .popup_block{width:345px !important;margin-left:--173.5px !important;}
+  .popup-header{float:left;width:100%;height:0 auto;overflow:hidden;}
+  .popup-slide{float:left;width:100%;height:0 auto;overflow:hidden;margin:5% 0px 0px 0px;}
+}

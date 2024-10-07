@@ -1,0 +1,17 @@
+﻿.btn-search {
+    text-align: end;
+}
+.btn-save{
+    text-align:end;
+}
+.btn-add {
+    text-align: start;
+}
+.btn-orange {
+    background: #F6841F;
+    color: white;
+}
+.btn-green {
+    background: #2DAC01;
+    color: white;
+}

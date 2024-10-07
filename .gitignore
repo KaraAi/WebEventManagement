@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/CreatedQR/Web.config
+/CreatedQR/Web.Debug.config
+/CreatedQR/Web.Release.config
+/CreatedQR/bin*
+/CreatedQR/obj*
+.vs

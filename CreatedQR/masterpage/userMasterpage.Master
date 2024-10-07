@@ -1,0 +1,218 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="userMasterpage.master.cs" Inherits="CreatedQR.masterpage.userMasterpage" %>
+
+<%@ Register Src="~/ctrl/ctrlMenuLeftTop.ascx" TagPrefix="uc1" TagName="ctrlMenuLeftTop" %>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CreatedQR</title>
+    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/fontawesome.min.css" rel="stylesheet" />
+    <link href="../vendors/font-awesome/css/all.min.css" rel="stylesheet" />
+    <!-- NProgress -->
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-progressbar -->
+    <link href="../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css"
+        rel="stylesheet">
+    <!-- JQVMap -->
+    <link href="../vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />
+    <!-- bootstrap-daterangepicker -->
+    <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <!-- Datatables -->
+    <link href="../vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="../vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet" />
+    <link href="../vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css"
+        rel="stylesheet" />
+    <link href="../vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css"
+        rel="stylesheet" />
+    <link href="../vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom Theme Style -->
+    <link href="../build/css/custom.css" rel="stylesheet" />
+    <link href="../build/css/format.css" rel="stylesheet" />
+    <link href="../build/css/stylePopup.css" rel="stylesheet" />
+    <script>
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+    </script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="nav-md">
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
+        <div class="container body">
+            <div class="main_container">
+                <!-- left, top navigation -->
+                <uc1:ctrlMenuLeftTop runat="server" id="ctrlMenuLeftTop" />
+                <!-- page content -->
+                <div class="right_col" role="main">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+                <!-- footer content -->
+                <footer>
+                    <div class="pull-right">
+                        Copyright © 2024 
+                    </div>
+                     <div class="clearfix"></div>
+                </footer>
+                <!-- /footer content -->
+            </div>
+        </div>
+    </form>
+    <!-- jQuery -->
+    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="../vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../vendors/nprogress/nprogress.js"></script>
+    <!-- Chart.js -->
+    <script src="../vendors/Chart.js/dist/Chart.min.js"></script>
+    <!-- gauge.js -->
+    <script src="../vendors/gauge.js/dist/gauge.min.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- iCheck -->
+    <script src="../vendors/iCheck/icheck.min.js"></script>
+    <!-- Skycons -->
+    <script src="../vendors/skycons/skycons.js"></script>
+    <!-- Flot -->
+    <script src="../vendors/Flot/jquery.flot.js"></script>
+    <script src="../vendors/Flot/jquery.flot.pie.js"></script>
+    <script src="../vendors/Flot/jquery.flot.time.js"></script>
+    <script src="../vendors/Flot/jquery.flot.stack.js"></script>
+    <script src="../vendors/Flot/jquery.flot.resize.js"></script>
+    <!-- Flot plugins -->
+    <script src="../vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+    <script src="../vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+    <script src="../vendors/flot.curvedlines/curvedLines.js"></script>
+    <!-- DateJS -->
+    <script src="../vendors/DateJS/build/date.js"></script>
+    <!-- JQVMap -->
+    <script src="../vendors/jqvmap/dist/jquery.vmap.js"></script>
+    <script src="../vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+    <script src="../vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="../vendors/moment/min/moment.min.js"></script>
+    <script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <!-- bootstrap-wysiwyg -->
+    <script src="../vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
+    <script src="../vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
+    <script src="../vendors/google-code-prettify/src/prettify.js"></script>
+    <!-- jQuery Tags Input -->
+    <script src="../vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+    <!-- Switchery -->
+    <script src="../vendors/switchery/dist/switchery.min.js"></script>
+    <!-- Select2 -->
+    <script src="../vendors/select2/dist/js/select2.full.min.js"></script>
+    <script src="../vendors/select2/dist/js/select2.min.js"></script>
+    <!-- Parsley -->
+    <script src="../vendors/parsleyjs/dist/parsley.min.js"></script>
+    <!-- Autosize -->
+    <script src="../vendors/autosize/dist/autosize.min.js"></script>
+    <!-- jQuery autocomplete -->
+    <script src="../vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+    <!-- starrr -->
+    <script src="../vendors/starrr/dist/starrr.js"></script>
+    <!-- Datatables -->
+    <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    <script src="../vendors/jszip/dist/jszip.min.js"></script>
+    <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
+    <script src="../js/accounting.js"></script>
+
+    <link href="../vendors/font-awesome/css/fontawesome.min.css" rel="stylesheet" />
+    <link href="../vendors/font-awesome/css/all.min.css" rel="stylesheet" />
+    <!-- Custom Theme Scripts -->
+    <%--<script src="../build/js/custom.min.js"></script>--%>
+    <script src="../build/js/custom.js"></script>
+    <script src="../build/js/jquery-qrcode.min.js"></script>
+
+
+    <script type="text/javascript">
+        var windowSizeArray = ["width=600,height=550", "width=485,height=440", "width=610,height=500,scrollbars=yes", "width=600,height=370,scrollbars=yes", "width=600,height=470,scrollbars=yes"];
+        $(document).ready(function () {
+            $('.newWindow').click(function (event) {
+
+                var url = $(this).attr("href");
+                var windowName = "popUp"; //$(this).attr("name");
+                var windowSize = windowSizeArray[$(this).attr("rel")];
+                window.open(url, windowName, windowSize);
+                event.preventDefault();
+            });
+
+            $(".moneyformat").keyup(function () {
+                $(this).val(accounting.formatNumber($(this).val()));
+            });
+            $(".moneyformatFloat").change(function () {
+                var my_val = $(this).val();
+                $(this).val(accounting.formatNumber(my_val, 2));
+            });
+
+            var textValues = $('#ContentPlaceHolder1_hdQRCode').val();
+
+            if (textValues != '') {
+                //hiện icon
+                $('#iconAndroid').removeClass("visibleicon");
+                $('#iconAndroid').addClass("displayicon");
+
+                $('#iconApple').removeClass("visibleicon");
+                $('#iconApple').addClass("displayicon");
+
+                $('#captionIcon').removeClass("visibleCaption");
+                $('#captionIcon').addClass("displayCaption");
+
+                $('#qrcodeholder').qrcode({
+                    //                    text: textValues + ' ' + 'https://play.google.com/store/apps/details?id=jp.homebear.evcharge',
+                    text: textValues,
+                    render: "canvas", // 'canvas' or 'table'. Default value is 'canvas'
+                    background: "#ffffff",
+                    foreground: "#000000",
+                    width: 150,
+                    height: 150
+                });
+
+                $('#qrcodeholderApple').qrcode({
+                    //text: textValues + ' ' + 'https://apps.apple.com/vn/app/evstand%E5%85%85%E9%9B%BB%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0/id1642538921',
+                    text: textValues,
+                    render: "canvas", // 'canvas' or 'table'. Default value is 'canvas'
+                    background: "#ffffff",
+                    foreground: "#000000",
+                    width: 150,
+                    height: 150
+                });
+
+            }
+
+
+
+        });
+    </script>
+</body>
+</html>
