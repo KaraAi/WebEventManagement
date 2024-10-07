@@ -4,11 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5c0b0b10fbb44ca69ad31d181d7ce900" Name="Diagram1">
-        <EntityTypeShape EntityType="CreateQRModel.Administrator" Width="1.5" PointX="5.75" PointY="0.75" />
-        <EntityTypeShape EntityType="CreateQRModel.Events" Width="1.5" PointX="0.75" PointY="1.75" />
-        <EntityTypeShape EntityType="CreateQRModel.User" Width="1.5" PointX="3" PointY="1" />
-        <AssociationConnector Association="CreateQRModel.FK_User_Events" />
+      <Diagram DiagramId="d120ab670ef54c96b22058e2eff86ff0" Name="Diagram1">
+        <EntityTypeShape EntityType="CreatedQR.C__EFMigrationsHistory" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CreatedQR.Administrator" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CreatedQR.Event" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CreatedQR.User" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="CreatedQR.FK_Users_Events_EventID" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

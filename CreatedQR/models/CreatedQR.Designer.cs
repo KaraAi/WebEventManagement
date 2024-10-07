@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\CreateQR\CreatedQR\CreatedQR\models\CreatedQR.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\LamViec\EventManagement\WebEventManagement\CreatedQR\models\CreatedQR.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

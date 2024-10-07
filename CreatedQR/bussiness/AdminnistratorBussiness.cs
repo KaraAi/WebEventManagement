@@ -14,12 +14,12 @@ namespace CreatedQR.bussiness
 
         public Administrator CheckAdminlogin(string userName, string passWord)
         {
-            Administrator userLogin = db.Administrator.Where(s => s.UserName == userName).FirstOrDefault();
+            Administrator userLogin = db.Administrators.Where(s => s.UserName == userName).FirstOrDefault();
             return userLogin;
         }
         public Administrator getAdminByID(int ID)
         {
-            Administrator user = db.Administrator.Where(s => s.ID == ID).FirstOrDefault();
+            Administrator user = db.Administrators.Where(s => s.ID == ID).FirstOrDefault();
             return user;
         }
     }

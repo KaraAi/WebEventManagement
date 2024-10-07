@@ -15,22 +15,22 @@ namespace CreatedQR.bussiness
 
         public List<User> getViewListUser(string keySearch)
         {
-            List<User> lstItem = db.User.AsEnumerable().Where(s =>
+            List<User> lstItem = db.Users.AsEnumerable().Where(s =>
                string.IsNullOrEmpty(keySearch) || s.FullName.Standardizing().Contains(keySearch.Standardizing())
                ).ToList();
             return lstItem;
         }
         public List<User> getAllUser(string keySearch, int eventID)
         {
-            List<User> groupUser = db.User.AsEnumerable().Where(s => s.EventID == eventID).ToList();
+            List<User> groupUser = db.Users.AsEnumerable().Where(s => s.EventID == eventID).ToList();
             groupUser = groupUser.AsEnumerable().Where(s =>
                 (string.IsNullOrEmpty(keySearch) || s.FullName.Standardizing().Contains(keySearch.Standardizing())
                 || s.FullName.Standardizing().Contains(keySearch.Standardizing()))).ToList();
             return groupUser;
         }
-        public List<User> getAllUserIsCheck(string keySearch, int eventID, int isCheck)
+        public List<User> getAllUserIsCheck(string keySearch, int eventID, bool IsCheck)
         {
-            List<User> groupUser = db.User.AsEnumerable().Where(s => s.EventID == eventID && s.isCheck == isCheck ).ToList();
+            List<User> groupUser = db.Users.AsEnumerable().Where(s => s.EventID == eventID && s.IsCheck == IsCheck ).ToList();
             groupUser = groupUser.AsEnumerable().Where(s =>
                 (string.IsNullOrEmpty(keySearch) || s.FullName.Standardizing().Contains(keySearch.Standardizing())
                 || s.FullName.Standardizing().Contains(keySearch.Standardizing()))).ToList();
@@ -38,7 +38,7 @@ namespace CreatedQR.bussiness
         }
         public User GetUsertByID(int userID)
         {
-            User ev = db.User.Where(s => s.UserID == userID).FirstOrDefault();
+            User ev = db.Users.Where(s => s.UserID == userID).FirstOrDefault();
             if (ev != null)
                 return ev;
             else
@@ -46,7 +46,7 @@ namespace CreatedQR.bussiness
         }
         public User checkUserCCCDExists(string CCCD)
         {
-            User user = db.User.Where(s => s.CCCD == CCCD).FirstOrDefault();
+            User user = db.Users.Where(s => s.CCCD == CCCD).FirstOrDefault();
             if (user != null)
                 return user;
             else
@@ -54,7 +54,7 @@ namespace CreatedQR.bussiness
         }
         public int getMaxCodeGuest(string charCode)
         {
-            string strMaxAge = db.User.Where(s => s.UserCode.Contains(charCode)).Max(p => p.UserCode);
+            string strMaxAge = db.Users.Where(s => s.UserCode.Contains(charCode)).Max(p => p.UserCode);
             if (!string.IsNullOrEmpty(strMaxAge))
             {
                 int indexSub = strMaxAge.Length - (int)EnumLenghtCode.CodeLenghtContent;
@@ -69,12 +69,12 @@ namespace CreatedQR.bussiness
         }
         public bool CheckCodeExits(string code)
         {
-            if (db.User.Where(s => s.UserCode == code).FirstOrDefault() != null)
+            if (db.Users.Where(s => s.UserCode == code).FirstOrDefault() != null)
                 return false;
             return true;
         }
 
-        public User InsertUser(int EventID, string UserCode, string FullName, string CCCD, string Phone, string Facility, string Office, string Email, int isCheck, string Description, string UserName)
+        public User InsertUser(int EventID, string UserCode, string FullName, string CCCD, string Phone, string Facility, string Office, string Email, bool IsCheck, string Description, string UserName)
         {
             try
             {
@@ -87,7 +87,7 @@ namespace CreatedQR.bussiness
                     user.CCCD = CCCD;
                     user.Facility = Facility;
                     user.Office = Office;
-                    user.isCheck = isCheck;
+                    user.IsCheck = IsCheck;
                     user.Email = Email;
                     user.Phone = Phone;
                     user.Description = Description;
@@ -97,7 +97,7 @@ namespace CreatedQR.bussiness
                     user.DateCreated = DateTime.Now;
                     user.DateUpdated = DateTime.Now;
 
-                    entityObject.User.Add(user);
+                    entityObject.Users.Add(user);
                     entityObject.SaveChanges();
                     return user;
                 }
@@ -107,13 +107,13 @@ namespace CreatedQR.bussiness
                 return null;
             }
         }
-        public User UpdateUser(int UserID, int EventID, string UserCode, string FullName, string CCCD, string Phone, string Facility, string Office, string Email, int isCheck, string Description, string UserName)
+        public User UpdateUser(int UserID, int EventID, string UserCode, string FullName, string CCCD, string Phone, string Facility, string Office, string Email, bool IsCheck, string Description, string UserName)
         {
             try
             {
                 using(CreateQREntities entityObject = new CreateQREntities())
                 {
-                    User user = entityObject.User.Where(s => s.UserID == UserID).FirstOrDefault();
+                    User user = entityObject.Users.Where(s => s.UserID == UserID).FirstOrDefault();
                     if(user != null)
                     {
                         user.EventID = EventID;
@@ -122,7 +122,7 @@ namespace CreatedQR.bussiness
                         user.CCCD = CCCD;
                         user.Facility = Facility;
                         user.Office = Office;
-                        user.isCheck = isCheck;
+                        user.IsCheck = IsCheck;
                         user.Email = Email;
                         user.Phone = Phone;
                         user.Description = Description;
@@ -146,10 +146,10 @@ namespace CreatedQR.bussiness
             {
                 using (CreateQREntities entityObject = new CreateQREntities())
                 {
-                    User user = entityObject.User.Where(s => s.UserID == UserID).FirstOrDefault();
+                    User user = entityObject.Users.Where(s => s.UserID == UserID).FirstOrDefault();
                     if (user != null)
                     {
-                        entityObject.User.Remove(user);
+                        entityObject.Users.Remove(user);
                         //Save to database
                         entityObject.SaveChanges();
                     }

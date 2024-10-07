@@ -1,5 +1,4 @@
-﻿using Itech.Utils;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Drawing.Imaging;
@@ -12,6 +11,7 @@ using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using CreatedQR.models;
+using Itech.Utils;
 
 namespace CreatedQR.bussiness
 {
@@ -155,5 +155,4 @@ namespace CreatedQR.bussiness
             return bmpOut;
         }
     }
-
 }

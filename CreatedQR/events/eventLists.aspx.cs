@@ -32,7 +32,7 @@ namespace CreatedQR.events
         {
 
             string key = txtKey.Value;
-            List<Events> lstItem = objEvent.getViewListEvent(key);
+            List<Event> lstItem = objEvent.getViewListEvent(key);
             serialNumber = 0;
             rptEvent.DataSource = lstItem;
             rptEvent.DataBind();
@@ -41,7 +41,7 @@ namespace CreatedQR.events
         {
 
             string key = txtKey.Value;
-            List<Events> lstItem = objEvent.getViewListEvent(key);
+            List<Event> lstItem = objEvent.getViewListEvent(key);
             rptEvent.DataSource = lstItem;
             rptEvent.DataBind();
         }
@@ -49,7 +49,7 @@ namespace CreatedQR.events
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                Events item = (Events)e.Item.DataItem;
+                Event item = (Event)e.Item.DataItem;
                 HiddenField hdEventID = e.Item.FindControl("hdEventID") as HiddenField;
                 Literal ltrEventID = e.Item.FindControl("ltrEventID") as Literal;
                 Literal ltrEventName = e.Item.FindControl("ltrEventName") as Literal;

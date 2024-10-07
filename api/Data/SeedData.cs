@@ -37,7 +37,7 @@ namespace api.Data
         new Events()
         {
           EventCode = "EV-2024/01",
-          EventName = "ham dự lễ Tốt Nghiệp",
+          EventName = "Tham dự lễ Tốt Nghiệp",
           UserCreated = "Administrator",
           UserUpdated = "Administrator",
           DateCreated = DateTime.Now,

@@ -35,7 +35,7 @@ namespace CreatedQR.ctrl
         private void loadDDlEvent()
         {
             EventBussiness objEvent = new EventBussiness();
-            List<Events> lstItem = objEvent.GetAllEvents();
+            List<Event> lstItem = objEvent.GetAllEvents();
             if (lstItem.Count > 0)
             {
                 ddlEventID.Items.Clear();
@@ -43,7 +43,7 @@ namespace CreatedQR.ctrl
                 Reward.Text = "------ Chọn Sự kiện ------";
                 Reward.Value = "0";
                 ddlEventID.Items.Add(Reward);
-                foreach (Events type in lstItem)
+                foreach (Event type in lstItem)
                 {
                     ListItem item = new ListItem();
                     item.Text = type.EventName;
@@ -121,9 +121,9 @@ namespace CreatedQR.ctrl
                 string Facility = txtFacility.Text.ToString();
                 string Office = txtOffice.Text.ToString();
                 string Email = txtEmail.Text.ToString();
-                int IsCheck = 0;
+                bool IsCheck = false;
                 if (chkIsCheck.Checked == true)
-                    IsCheck = 1;
+                    IsCheck = true;
                 string Description = txtDescription.Text.ToString();
                 string UserName = this.UserNameLogin;
                 User item = objUser.InsertUser(Event,UserCode,FullName,CCCD,Phone,Facility,Office,Email,IsCheck,Description ,UserName);
@@ -157,7 +157,7 @@ namespace CreatedQR.ctrl
                 string Facility = txtFacility.Text.ToString();
                 string Office = txtOffice.Text.ToString();
                 string Email = txtEmail.Text.ToString();
-                int IsCheck = Convert.ToInt16(chkIsCheck.Checked);
+                bool IsCheck = chkIsCheck.Checked;
                 string Description = txtDescription.Text.ToString();
                 string UserName = this.UserNameLogin;
                 User item = objUser.UpdateUser(userID, Event, UserCode, FullName, CCCD, Phone, Facility, Office, Email, IsCheck, Description, UserName);

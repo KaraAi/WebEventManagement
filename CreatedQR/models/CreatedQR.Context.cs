@@ -25,8 +25,9 @@ namespace CreatedQR.models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Administrator> Administrator { get; set; }
-        public virtual DbSet<Events> Events { get; set; }
-        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<C__EFMigrationsHistory> C__EFMigrationsHistory { get; set; }
+        public virtual DbSet<Administrator> Administrators { get; set; }
+        public virtual DbSet<Event> Events { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

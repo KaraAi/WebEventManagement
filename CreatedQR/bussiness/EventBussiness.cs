@@ -13,29 +13,29 @@ namespace CreatedQR.bussiness
         CreateQREntities db = new CreateQREntities();
         #endregion
 
-        public List<Events> GetAllEvents()
+        public List<Event> GetAllEvents()
         {
-            List<Events> lstItem = db.Events.OrderByDescending(s => s.EventID).ToList();
+            List<Event> lstItem = db.Events.OrderByDescending(s => s.EventID).ToList();
             return lstItem;
         }
-        public Events checkEventNameExists(string eventName)
+        public Event checkEventNameExists(string eventName)
         {
-            Events item = db.Events.Where(s => s.EventName == eventName).FirstOrDefault();
+            Event item = db.Events.Where(s => s.EventName == eventName).FirstOrDefault();
             if (item != null)
                 return item;
             else
                 return null;
         }
-        public List<Events> getViewListEvent(string keySearch)
+        public List<Event> getViewListEvent(string keySearch)
         {
-            List<Events> lstItem = db.Events.AsEnumerable().Where(s =>
+            List<Event> lstItem = db.Events.AsEnumerable().Where(s =>
                string.IsNullOrEmpty(keySearch) || s.EventName.Standardizing().Contains(keySearch.Standardizing())
                ).ToList();
             return lstItem;
         }
-        public Events GetEventByID(int eventID)
+        public Event GetEventByID(int eventID)
         {
-            Events ev = db.Events.Where(s => s.EventID == eventID).FirstOrDefault();
+            Event ev = db.Events.Where(s => s.EventID == eventID).FirstOrDefault();
             if (ev != null)
                 return ev;
             else
@@ -62,13 +62,13 @@ namespace CreatedQR.bussiness
                 return false;
             return true;
         }
-        public Events insertEvent(string EventCode,string TimeName, string UserName)
+        public Event insertEvent(string EventCode,string TimeName, string UserName)
         {
             try
             {
                 using (CreateQREntities entityObject = new CreateQREntities())
                 {
-                    Events events = new Events();
+                    Event events = new Event();
                     events.EventCode = EventCode;
                     events.EventName = TimeName;
                     events.UserCreated = UserName;
@@ -88,13 +88,13 @@ namespace CreatedQR.bussiness
             }
         }
 
-        public Events updateEvent(int EventID, string EventCode, string EventName, string UserName)
+        public Event updateEvent(int EventID, string EventCode, string EventName, string UserName)
         {
             try
             {
                 using (CreateQREntities entityObject = new CreateQREntities())
                 {
-                    Events events = entityObject.Events.Where(s => s.EventID == EventID).FirstOrDefault();
+                    Event events = entityObject.Events.Where(s => s.EventID == EventID).FirstOrDefault();
                     if (events != null)
                     {
                         events.EventCode = EventCode;
@@ -120,7 +120,7 @@ namespace CreatedQR.bussiness
             {
                 using (CreateQREntities entityObject = new CreateQREntities())
                 {
-                    Events events = entityObject.Events.Where(s => s.EventID == EventID).FirstOrDefault();
+                    Event events = entityObject.Events.Where(s => s.EventID == EventID).FirstOrDefault();
                     if (events != null)
                     {
                         entityObject.Events.Remove(events);

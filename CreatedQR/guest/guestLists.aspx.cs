@@ -37,7 +37,7 @@ namespace CreatedQR.guest
         private void loadDDlEvent()
         {
             EventBussiness objEvent = new EventBussiness();
-            List<Events> lstItem = objEvent.GetAllEvents();
+            List<Event> lstItem = objEvent.GetAllEvents();
             if (lstItem.Count > 0)
             {
                 ddlEvent.Items.Clear();
@@ -45,7 +45,7 @@ namespace CreatedQR.guest
                 Reward.Text = "------ Chọn Sự kiện ------";
                 Reward.Value = "0";
                 ddlEvent.Items.Add(Reward);
-                foreach (Events type in lstItem)
+                foreach (Event type in lstItem)
                 {
                     ListItem item = new ListItem();
                     item.Text = type.EventName;

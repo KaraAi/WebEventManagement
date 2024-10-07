@@ -26,7 +26,7 @@ namespace CreatedQR.guest
         private void loadDDlEvent()
         {
             EventBussiness objEvent = new EventBussiness();
-            List<Events> lstItem = objEvent.GetAllEvents();
+            List<Event> lstItem = objEvent.GetAllEvents();
             if (lstItem.Count > 0)
             {
                 ddlEvent.Items.Clear();
@@ -34,7 +34,7 @@ namespace CreatedQR.guest
                 Reward.Text = "------ Chọn Sự kiện ------";
                 Reward.Value = "0";
                 ddlEvent.Items.Add(Reward);
-                foreach (Events type in lstItem)
+                foreach (Event type in lstItem)
                 {
                     ListItem item = new ListItem();
                     item.Text = type.EventName;
@@ -60,7 +60,7 @@ namespace CreatedQR.guest
         {
             string key = txtKeySearch.Value;
             int eventID = int.Parse(ddlEvent.SelectedValue.ToString());
-            int isCheck = int.Parse(ddlIsCheck.SelectedValue.ToString());
+            bool isCheck = ddlIsCheck.SelectedItem.Text == "Đã check in" ? true : false;
             List<User> lstItem = objUser.getAllUserIsCheck(key, eventID, isCheck);
             rptGuest.DataSource = lstItem;
             rptGuest.DataBind();
@@ -73,7 +73,7 @@ namespace CreatedQR.guest
         {
             string key = txtKeySearch.Value;
             int eventID = int.Parse(ddlEvent.SelectedValue.ToString());
-            int isCheck = int.Parse(ddlIsCheck.SelectedValue.ToString());
+            bool isCheck = ddlIsCheck.SelectedItem.Text == "Đã check in" ? true : false;
             List<User> lstItem = objUser.getAllUserIsCheck(key, eventID, isCheck);
             serialNumber = 0;
             rptGuest.DataSource = lstItem;

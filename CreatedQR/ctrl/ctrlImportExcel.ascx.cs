@@ -171,14 +171,14 @@ namespace CreatedQR.ctrl
                     {
                         //check office exists
                         EventBussiness objEvent = new EventBussiness();
-                        Events eventItem = objEvent.checkEventNameExists(EventName);
+                        Event eventItem = objEvent.checkEventNameExists(EventName);
                         if (eventItem != null)
                             EventID = eventItem.EventID;
                         else
                         {
                             //insert
                             string eventCode = CreateSerialNo("EV-" + DateTime.Now.ToString("yyyy") + "/");
-                            Events item = objEvent.insertEvent(eventCode, EventName, userName);
+                            Event item = objEvent.insertEvent(eventCode, EventName, userName);
                             if (item != null)
                                 EventID = item.EventID;
                         }
@@ -196,7 +196,7 @@ namespace CreatedQR.ctrl
                             string FacilityUser = Facility;
                             string OfficeUser = Office;
                             string EmailUser = Email;
-                            int IsCheck = 0;
+                            bool IsCheck = false;
                             string DescriptionUser = Description;
                             User insertuser = objUser.InsertUser(Event, Code, Name, CCCDUser, Phone, FacilityUser, OfficeUser, EmailUser, IsCheck, DescriptionUser, userName);
                             if (insertuser != null)

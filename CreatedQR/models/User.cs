@@ -15,7 +15,6 @@ namespace CreatedQR.models
     public partial class User
     {
         public int UserID { get; set; }
-        public int EventID { get; set; }
         public string UserCode { get; set; }
         public string FullName { get; set; }
         public string CCCD { get; set; }
@@ -23,13 +22,14 @@ namespace CreatedQR.models
         public string Facility { get; set; }
         public string Office { get; set; }
         public string Email { get; set; }
-        public int isCheck { get; set; }
+        public bool IsCheck { get; set; }
         public string Description { get; set; }
         public string UserCreated { get; set; }
         public string UserUpdated { get; set; }
         public System.DateTime DateCreated { get; set; }
         public System.DateTime DateUpdated { get; set; }
+        public int EventID { get; set; }
     
-        public virtual Events Events { get; set; }
+        public virtual Event Event { get; set; }
     }
 }

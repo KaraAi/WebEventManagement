@@ -54,7 +54,7 @@ namespace CreatedQR.ctrl
 
         public void LoadDetailEvent(int EventID)
         {
-            Events ev = objEvent.GetEventByID(EventID);
+            Event ev = objEvent.GetEventByID(EventID);
             if (ev != null)
             {
                 hdEventID.Value = ev.EventID.ToString();
@@ -83,7 +83,7 @@ namespace CreatedQR.ctrl
                 string EventName = txtEventName.Text.ToString();
                 string EventCode = CreateSerialNo("EV-" + DateTime.Now.ToString("yyyy") + "/");
                 string UserName = this.UserNameLogin;   
-                Events item = objEvent.insertEvent(EventCode,EventName, UserName);
+                Event item = objEvent.insertEvent(EventCode,EventName, UserName);
                 if (item != null)
                 {
 
@@ -109,7 +109,7 @@ namespace CreatedQR.ctrl
                 string EventName = txtEventName.Text.ToString();
                 string EventCode = txtEventCode.Text.ToString();
                 string UserName = this.UserNameLogin;
-                Events item = objEvent.updateEvent(eventID, EventCode, EventName, UserName);
+                Event item = objEvent.updateEvent(eventID, EventCode, EventName, UserName);
                 if (item != null)
                 {
 
