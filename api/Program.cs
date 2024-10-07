@@ -1,5 +1,8 @@
 using System.Text;
 using api.Data;
+using api.Handlers;
+using api.Repositories.Interfaces;
+using api.Routes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -7,24 +10,31 @@ Console.OutputEncoding = Encoding.UTF8;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<ApiContext>(options =>
+builder.Services.AddScoped<IUserRepo, UserHandler>();
+
+builder.Services.AddSingleton(provider =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new Exception("Connection string not found"), sqlOptions =>
+    var optionsBuilder = new DbContextOptionsBuilder<ApiContext>();
+    optionsBuilder.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new Exception("Connection string not found"), sqlOptions =>
     {
         sqlOptions.EnableRetryOnFailure();
         sqlOptions.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
     });
+
+    return new ApiContext(optionsBuilder.Options);
 });
 
+// Add logging
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
 
+// Add Health Checks
 builder.Services.AddHealthChecks();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
-    options.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+    options.SwaggerDoc("v1", new OpenApiInfo { Title = "Event Management System", Version = "v1" });
 });
 
 var app = builder.Build();
@@ -38,6 +48,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+using var scope = app.Services.CreateScope();
+app.MapUserRoutes(scope.ServiceProvider.GetRequiredService<IUserRepo>());
 
 SeedData.SeedDatabase(app);
 
