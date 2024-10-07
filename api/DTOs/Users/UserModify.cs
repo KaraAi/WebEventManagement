@@ -1,4 +1,4 @@
-namespace API.DTOs.Users
+namespace api.DTOs.Users
 {
   public record ModifyUser
   {

@@ -5,7 +5,7 @@ namespace api.Handlers
 {
   public static class ExceptionHandler<T>
   {
-    public static DataResponses<T> DataExceptionHandler(Exception ex, Metadata metadata, int statusCode)
+    public static DataResponses<T> QueryExceptionHandler(Exception ex, Metadata? metadata, int statusCode)
     {
       return new DataResponses<T>
       {
@@ -14,6 +14,15 @@ namespace api.Handlers
         Success = false,
         Metadata = metadata,
         StatusCode = statusCode
+      };
+    }
+    public static GeneralResponse MutationExceptionHandler(Exception ex, int statusCode)
+    {
+      return new GeneralResponse
+      {
+        Message = ex.Message,
+        Success = false,
+        StatusCode = 500
       };
     }
   }

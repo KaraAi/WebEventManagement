@@ -1,4 +1,9 @@
 namespace api.DTOs.Responses
 {
-    public record GeneralResponse(int StatusCode, string Message = null!);
+    public record GeneralResponse
+    {
+        public required string Message { get; set; }
+        public bool Success { get; set; }
+        public int StatusCode { get; set; }
+    }
 }

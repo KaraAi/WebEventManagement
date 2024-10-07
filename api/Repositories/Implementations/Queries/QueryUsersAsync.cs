@@ -9,9 +9,10 @@ using api.Repositories.Implementations.Utils;
 using api.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace api.Repositories.Implementations.Get
+namespace api.Repositories.Implementations.Queries
 {
-  public class GetAsync(ApiContext context) : IQueryHandler<List<UserDetail>, UserRequestOptions>
+  #region snippet_GetListAsync
+  public class QueryUsersAsync(ApiContext context) : IQueryListHandler<List<UserDetail>, UserRequestOptions>
   {
     public async Task<DataResponses<List<UserDetail>>> GetListAsync(UserRequestOptions queryOptions)
     {
@@ -79,14 +80,27 @@ namespace api.Repositories.Implementations.Get
             { nameof(UserDetail.Event.EventName), queryOptions.Sort.EventName }
         };
 
-        RequestOptionProcess.ApplyFilters(rawData, filters);
-        RequestOptionProcess.ApplySorting(rawData, sorts);
+        rawData = RequestOptionProcess.ApplyFilters(rawData, filters);
+        rawData = RequestOptionProcess.ApplySorting(rawData, sorts);
 
         var totalCount = rawData.Count;
-        var totalPages = (int)Math.Ceiling((double)totalCount / limit);
-
         initialMetadata.TotalCount = totalCount;
+
+        if (totalCount == 0)
+        {
+          return new DataResponses<List<UserDetail>>
+          {
+            Data = [],
+            Message = "No data found",
+            Success = true,
+            Metadata = initialMetadata,
+            StatusCode = 200
+          };
+        }
+
+        var totalPages = (int)Math.Ceiling((double)totalCount / limit);
         initialMetadata.TotalPages = totalPages;
+
 
         RequestOptionProcess.ProcessPaginationOptions(page, limit, totalPages);
 
@@ -131,24 +145,85 @@ namespace api.Repositories.Implementations.Get
       }
       catch (RequestLimitBehind5Exception)
       {
-        return ExceptionHandler<List<UserDetail>>.DataExceptionHandler(new RequestLimitBehind5Exception(ExceptionMessages.RequestLimitBehind5), metadata: initialMetadata, 400);
+        return ExceptionHandler<List<UserDetail>>.QueryExceptionHandler(new RequestLimitBehind5Exception(ExceptionMessages.RequestLimitBehind5), metadata: initialMetadata, 400);
       }
       catch (RequestLimitExceed50Exception)
       {
-        return ExceptionHandler<List<UserDetail>>.DataExceptionHandler(new RequestLimitExceed50Exception(ExceptionMessages.RequestLimitExceed50), metadata: initialMetadata, 400);
+        return ExceptionHandler<List<UserDetail>>.QueryExceptionHandler(new RequestLimitExceed50Exception(ExceptionMessages.RequestLimitExceed50), metadata: initialMetadata, 400);
       }
       catch (RequestPageBehind1Exception)
       {
-        return ExceptionHandler<List<UserDetail>>.DataExceptionHandler(new RequestPageBehind1Exception(ExceptionMessages.RequestPageBehind1), metadata: initialMetadata, 400);
+        return ExceptionHandler<List<UserDetail>>.QueryExceptionHandler(new RequestPageBehind1Exception(ExceptionMessages.RequestPageBehind1), metadata: initialMetadata, 400);
       }
       catch (RequestPageExceedTotalPagesException)
       {
-        return ExceptionHandler<List<UserDetail>>.DataExceptionHandler(new RequestPageExceedTotalPagesException(ExceptionMessages.RequestPageExceedTotalPages), metadata: initialMetadata, 400);
+        return ExceptionHandler<List<UserDetail>>.QueryExceptionHandler(new RequestPageExceedTotalPagesException(ExceptionMessages.RequestPageExceedTotalPages), metadata: initialMetadata, 400);
       }
       catch (Exception ex)
       {
-        return ExceptionHandler<List<UserDetail>>.DataExceptionHandler(ex, metadata: initialMetadata, 500);
+        return ExceptionHandler<List<UserDetail>>.QueryExceptionHandler(ex, metadata: initialMetadata, 500);
       }
     }
   }
+  #endregion
+  #region snippet_GetAsync
+  public class QueryUserAsync(ApiContext context) : IQueryItemHandler<UserDetail>
+  {
+    public async Task<DataResponses<UserDetail>> GetByIdAsync(int id)
+    {
+      try
+      {
+        var rawData = await context.Users
+            .AsNoTracking()
+            .AsQueryable()
+            .Include(x => x.Events)
+            .FirstOrDefaultAsync(x => x.UserID == id) ?? throw new RequestGeneralException(ExceptionMessages.NotFound);
+
+        var data = new UserDetail
+        {
+          UserID = rawData.UserID,
+          UserCode = rawData.UserCode,
+          FullName = rawData.FullName,
+          CCCD = rawData.CCCD,
+          Phone = rawData.Phone,
+          Facility = rawData.Facility,
+          Office = rawData.Office,
+          Email = rawData.Email,
+          IsCheck = rawData.IsCheck,
+          Description = rawData.Description,
+          UserCreated = rawData.UserCreated,
+          UserUpdated = rawData.UserUpdated,
+          DateCreated = rawData.DateCreated,
+          DateUpdated = rawData.DateUpdated,
+          Event = rawData.Events != null ? new UserEventDetail
+          {
+            EventID = rawData.Events.EventID,
+            EventCode = rawData.Events.EventCode,
+            EventName = rawData.Events.EventName,
+            UserCreated = rawData.Events.UserCreated,
+            UserUpdated = rawData.Events.UserUpdated,
+            DateCreated = rawData.Events.DateCreated,
+            DateUpdated = rawData.Events.DateUpdated
+          } : null
+        };
+
+        return new DataResponses<UserDetail>
+        {
+          Data = data,
+          Message = "Success",
+          Success = true,
+          StatusCode = 200
+        };
+      }
+      catch (RequestGeneralException ex)
+      {
+        return ExceptionHandler<UserDetail>.QueryExceptionHandler(ex, metadata: null, 404);
+      }
+      catch (Exception ex)
+      {
+        return ExceptionHandler<UserDetail>.QueryExceptionHandler(ex, metadata: null, 500);
+      }
+    }
+  }
+  #endregion
 }
