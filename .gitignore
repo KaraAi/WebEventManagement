@@ -1,10 +1,16 @@
 ﻿################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
-
+# api
+/api/bin*
+/api/obj*
+/api/appsettings.json
+# Client
 /CreatedQR/Web.config
 /CreatedQR/Web.Debug.config
 /CreatedQR/Web.Release.config
 /CreatedQR/bin*
 /CreatedQR/obj*
+# Workspace
 .vs
+.vscode
