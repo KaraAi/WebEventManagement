@@ -85,7 +85,7 @@ or
 dotnet build
 ```
 
-This will start the API server. By default, the API will be hosted at ==https://localhost:7179== (HTTPS) or ==http://localhost:5202== (HTTP).
+This will start the API server. By default, the API will be hosted at https://localhost:7179 (HTTPS) or http://localhost:5202 (HTTP).
 
 ## Swagger API Documentation
 
@@ -101,7 +101,7 @@ You will see the Swagger UI, which displays all available API endpoints and allo
 
 ### How to Use Swagger
 
-1. Open ==http://localhost:5202/swagger== in your browser.
+1. Open http://localhost:5202/swagger in your browser.
 2. Explore the available API endpoints in the Swagger UI.
 3. Click on any endpoint to expand its details.
 4. Use the built-in forms to input data and test the API by clicking the **Try it out** button.
