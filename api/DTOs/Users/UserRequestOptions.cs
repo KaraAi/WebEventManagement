@@ -18,7 +18,7 @@ namespace api.DTOs.Users
     public string? Facility { get; set; }
     public string? Office { get; set; }
     public string? Email { get; set; }
-    public bool? IsCheck { get; set; }
+    public int? IsCheck { get; set; }
     public string? Description { get; set; }
     public string? UserCreated { get; set; }
     public string? UserUpdated { get; set; }
