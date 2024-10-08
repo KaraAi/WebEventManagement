@@ -20,7 +20,7 @@ namespace api.Models
     public DateTime DateCreated { get; set; }
     public DateTime DateUpdated { get; set; }
 
-    public int EventID { get; set; }
+    public int? EventID { get; set; }
     public Events? Events { get; set; }
   }
 }

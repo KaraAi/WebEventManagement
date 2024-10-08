@@ -15,7 +15,7 @@ namespace api.Data
         .HasOne(u => u.Events)
         .WithMany(e => e.Users)
         .HasForeignKey(u => u.EventID)
-        .OnDelete(DeleteBehavior.Cascade);
+        .OnDelete(DeleteBehavior.SetNull);
 
       modelBuilder.Entity<Administrator>()
         .HasIndex(a => a.UserName)
