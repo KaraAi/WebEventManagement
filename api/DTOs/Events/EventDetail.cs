@@ -23,7 +23,7 @@ namespace api.DTOs.Events
     public required string Facility { get; set; }
     public required string Office { get; set; }
     public required string Email { get; set; }
-    public bool IsCheck { get; set; }
+    public int IsCheck { get; set; }
     public required string Description { get; set; }
     public required string UserCreated { get; set; }
     public required string UserUpdated { get; set; }
